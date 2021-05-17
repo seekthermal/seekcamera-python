@@ -120,7 +120,8 @@ $LD_LIBRARY_PATH/
 
 ## License :balance_scale:
 
-The project is licensed under the Apache 2.0 License (see `LICENSE`).
+The project is licensed under the Apache 2.0 License.
+Please see the [LICENSE](./LICENSE) for more information.
 
 Copyright (c) 2021 Seek Thermal.
 
@@ -128,4 +129,4 @@ Copyright (c) 2021 Seek Thermal.
 
 We are excited about contributions!
 
-Please see our contributing guide (`CONTRIBUTING.md`) for more information.
+Please see our [contributing guide](./CONTRIBUTING.md) for more information.
