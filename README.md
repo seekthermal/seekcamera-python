@@ -12,7 +12,7 @@ In addition, examples are provided to demonstrate the use of several functional 
 The Python language bindings supplement and extend the SDK's traditional C interface in a higher-level language.
 They require the Seek Thermal SDK 4.X to be pre-installed on the system; they also require a Seek Thermal OEM core to be physically attached to the system.
 
-Visit our [website](https://thermal.com) for more information and to get your [starter kit](https://www.thermal.com/oem.html).
+Visit our [website](https://thermal.com) for more information and to get your [Starter Kit](https://www.thermal.com/oem.html).
 
 ## Features :test_tube:
 
