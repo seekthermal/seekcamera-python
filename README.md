@@ -104,7 +104,7 @@ On Windows, the SDK library (`seekcamera.dll`) should be located in one of the f
 
 ```txt
 %SEEKTHERMAL_LIB_DIR%/
-C:/Program Files/Seek Thermal/SDK/4.X.X/x64-windows/lib
+C:/Program Files/Seek Thermal/Seek Thermal SDK/4.X.X/x64-windows/lib
 ```
 
 On Linux, the SDK library (`libseekcamera.so`) should be located in one of the following places in order of precedence:
