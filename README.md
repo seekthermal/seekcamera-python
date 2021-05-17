@@ -73,7 +73,7 @@ Or install with setuptools:
 python3 setup.py install
 ```
 
-### Dependencies :cd:
+### Dependencies :floppy_disk:
 
 #### Python dependencies
 
