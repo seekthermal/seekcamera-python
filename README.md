@@ -22,7 +22,7 @@ The Python language bindings mirror all the major functionality in our SDK.
 
 * Asynchronous event driven API that is fast and responsive
 * Ability to use multiple cameras in one SDK instance
-* First class support for Mosaic and Micro Core cameras through the same APIs
+* Common set of APIs for both Mosaic and Micro Core cameras
 * Robust error handling and logging interface
 * Numerous frame output formats
 * Example applications to learn and get started
