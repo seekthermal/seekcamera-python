@@ -59,8 +59,6 @@ from seekcamera.error import (
     SeekCameraInvalidFirmwareImageError,
     SeekCameraInvalidKeyError,
     SeekCameraSensorCommunicationError,
-    SeekCameraInvalidContextError,
-    SeekCameraInvalidDeviceError,
     SeekCameraOutOfRangeError,
     SeekCameraVerifyFailedError,
     SeekCameraSystemCallFailedError,
