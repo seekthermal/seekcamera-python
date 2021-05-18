@@ -100,7 +100,7 @@ pip3 install -r requirements.examples.txt
 
 The Python language bindings require the Seek Thermal SDK to be installed.
 It is recommended, but not required, to use one of the SDK installers.
-We provide Debian installers (`.deb`) for Linux and MSI installers (`.msi`) for Windows.
+We provide Debian installers (`.deb`) for Linux and zipfile archives (`.zip`) for Windows.
 
 On Windows, the SDK library (`seekcamera.dll`) should be located in one of the following places in order of precedence:
 
