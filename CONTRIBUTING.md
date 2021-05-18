@@ -95,13 +95,16 @@ The following guidelines should be followed when submitting a PR:
     Test with what you have and let us know what tests were run and on what hardware.
 * Any additional unit testing
     * We are always thrilled to see more tests!
+* Passing of all CI actions
+    * GitHub will warn you in the PR page if any fail.
 * Sign off all commits as in compliance with the [DCO](./DCO)
 * No merge conflicts
-    * If you really are unsure of how to resolve a conflict we can help.
+    * If you are unsure of how to resolve a conflict we can help.
 
 ## Style guide
 
 We use [black](https://pypi.org/project/black/) for code formatting.
+One of the GitHub Actions will check formatting when opening a PR.
 
 ```txt
 # Install black
