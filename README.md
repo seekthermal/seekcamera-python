@@ -1,5 +1,7 @@
 # seekcamera-python
 
+[![main Actions Status](https://github.com/{seekthermal}/{seekcamera-python}/workflows/{main}/badge.svg)](https://github.com/{seekthermal}/{seekcamera-python}/actions)
+
 Welcome! :wave:
 
 This is the official home of the Python language bindings for the Seek Thermal SDK. :snake:
