@@ -183,22 +183,6 @@ class SeekCameraSensorCommunicationError(SeekCameraError):
         return status == -109
 
 
-class SeekCameraInvalidContextError(SeekCameraError):
-    """Raised when an invalid context is passed."""
-
-    @classmethod
-    def _exception_for(cls, status):
-        return status == -200
-
-
-class SeekCameraInvalidDeviceError(SeekCameraError):
-    """Raised when an operation tries to occur using an invalid device."""
-
-    @classmethod
-    def _exception_for(cls, status):
-        return status == -201
-
-
 class SeekCameraOutOfRangeError(SeekCameraError):
     """Raised when a value is out of range."""
 
