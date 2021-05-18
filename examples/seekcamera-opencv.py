@@ -84,7 +84,7 @@ def main():
             # Wait a maximum of 150ms for each frame to come in.
             # A condition variable is used to synchronize the access to the renderer.
             with renderer.frame_condition:
-                if renderer.frame_condition.wait(150):
+                if renderer.frame_condition.wait(150.0 / 1000.0):
                     img = renderer.frame.data
 
                     # Resize the rendering window.
