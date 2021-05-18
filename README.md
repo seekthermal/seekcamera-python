@@ -1,6 +1,6 @@
 # seekcamera-python
 
-[![main Actions Status](https://github.com/{seekthermal}/{seekcamera-python}/workflows/{main}/badge.svg)](https://github.com/{seekthermal}/{seekcamera-python}/actions)
+[![main Actions Status](https://github.com/seekthermal/seekcamera-python/workflows/main/badge.svg)](https://github.com/seekthermal/seekcamera-python/actions)
 
 Welcome! :wave:
 
