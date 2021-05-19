@@ -459,7 +459,7 @@ class SeekCameraManager(object):
         callback: callable
             User-defined callback function. The callback function will be called every
             time a connect, disconnect, or event occurrs.
-        user_data: any
+        user_data: Optional
             Optional user-defined data which is provided to the callback.
 
         Raises
@@ -1067,7 +1067,7 @@ class SeekCamera(object):
         ----------
         callback: callable
             Callback function to register with the camera.
-        user_data: any
+        user_data: Optional
             Optional parameter containing user defined data.
 
         Raises
