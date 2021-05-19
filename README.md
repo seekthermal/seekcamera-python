@@ -35,8 +35,13 @@ The Python language bindinge will run on a wide variety of common processors and
 
 The requirements are
 * Python 3.X
-  * [numpy](https://numpy.org) >= 1
-* A host architecture supported by the SDK (see the official SDK documentation for more information)
+* [numpy](https://numpy.org) >= 1
+* Host architecture supported by the SDK
+  * See the official SDK documentation for more information
+
+The optional dependencies are
+* [opencv-python](https://github.com/opencv/opencv-python) >=4
+  * Only for the seekcamera-opencv sample
 
 ## Getting started :book:
 
