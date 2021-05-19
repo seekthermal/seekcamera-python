@@ -70,7 +70,7 @@ def on_event(camera, event_type, event_status, _user_data):
         User defined data passed to the callback. This can be anything
         but in this case it is None.
     """
-    print("%s: %s" % (str(event_type), camera.chipid))
+    print("{}: {}".format(str(event_type), camera.chipid))
 
     if event_type == SeekCameraManagerEvent.CONNECT:
         # Open a new CSV file with the unique camera chip ID embedded.
@@ -89,7 +89,7 @@ def on_event(camera, event_type, event_status, _user_data):
         camera.capture_session_stop()
 
     elif event_type == SeekCameraManagerEvent.ERROR:
-        print(str(event_status) + ": " + camera.chipid)
+        print("{}: {}".format(str(event_status), camera.chipid))
 
     elif event_type == SeekCameraManagerEvent.READY_TO_PAIR:
         return

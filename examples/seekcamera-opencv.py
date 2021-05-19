@@ -80,7 +80,7 @@ def on_event(camera, event_type, event_status, renderer):
         User defined data passed to the callback. This can be anything
         but in this case it is a reference to the Renderer object.
     """
-    print("%s: %s" % (str(event_type), camera.chipid))
+    print("{}: {}".format(str(event_type), camera.chipid))
 
     if event_type == SeekCameraManagerEvent.CONNECT:
         if renderer.busy:
@@ -115,7 +115,7 @@ def on_event(camera, event_type, event_status, renderer):
             renderer.busy = False
 
     elif event_type == SeekCameraManagerEvent.ERROR:
-        print(str(event_status) + ": " + camera.chipid)
+        print("{}: {}".format(str(event_status), camera.chipid))
 
     elif event_type == SeekCameraManagerEvent.READY_TO_PAIR:
         return
