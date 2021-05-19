@@ -50,6 +50,13 @@ The sample applications demonstrate how to use the most common APIs and features
 * seekcamera-simple
   * Demonstrates how to export frame pixel values to disk as a CSV file.
 
+Run the samples
+
+```txt
+cd seekcamera-python
+python3 examples/seekcamera-opencv.py
+```
+
 ### API documentation :brain:
 
 API documentation is provided as standard Python docstrings.
@@ -57,40 +64,34 @@ Please refer to the more complete Seek Thermal SDK C Programming Guide which is 
 
 ## Installation :open_file_folder:
 
-To install the Python language bindings using [pip](https://pypi.org/project/pip/).
+The Python language bindings are developed using Python 3.X.
+We recommended Python 3.6+ since we test against those versions; older versions may work as well but we have not tested against them.
+
+You can download Python from the official [website](https://wwww.python.org/downloads/).
+
+After installing Python, clone this repository
 
 ```txt
-pip3 install .
+git clone https://github.com/seekthermal/seekcamera-python.git
 ```
 
-Or install as editable (recommended for developers)
+Change directories into the cloned repository
+
+```txt
+cd seekcamera-python
+```
+
+Install via [pip](https://pypi.org/project/pip)
 
 ```txt
 pip3 install -e .
-```
-
-Or install with setuptools:
-
-```txt
-python3 setup.py install
 ```
 
 ### Dependencies :floppy_disk:
 
 #### Python dependencies
 
-Required Python dependencies can be installed via [pip](https://pypi.org/project/pip/).
-
-```txt
-$ cat requirements.txt
-numpy>=1
-```
-
-```txt
-pip3 install -r requirements.txt
-```
-
-Optional Python dependencies (required for some of the samples) can be installed via [pip](https://pypi.org/project/pip/).
+Additional Python dependencies (required for some of the samples) can be installed via [pip](https://pypi.org/project/pip/).
 
 ```txt
 pip3 install -r requirements.examples.txt
@@ -119,6 +120,16 @@ $LD_LIBRARY_PATH/
 /usr/lib/
 /usr/lib64/
 ```
+
+---
+
+**NOTE**
+
+`%SEEKTHERMAL_LIB_DIR%` is Windows environment variable and is (optionally) set by the user.
+
+`$SEEKTHERMAL_LIB_DIR` is a Linux environment variable and is (optionally) set by the user.
+
+---
 
 ## License :balance_scale:
 
