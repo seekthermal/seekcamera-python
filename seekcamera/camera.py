@@ -752,7 +752,7 @@ class SeekCamera(object):
         return x.value, y.value, w.value, h.value
 
     @thermography_window.setter
-    def thermography_window(self, window=(0, 0, 0, 0)):
+    def thermography_window(self, window):
         if not isinstance(window, tuple):
             raise SeekCameraInvalidParameterError
 
