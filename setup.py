@@ -29,7 +29,7 @@ setuptools.setup(
     description="Seek Thermal SDK Python Language Bindings",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://thermal.com",
+    url="https://github.com/seekthermal/seekcamera-python",
     license="Apache License 2.0",
     license_files=["LICENSE"],
     packages=setuptools.find_packages(),
