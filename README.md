@@ -74,7 +74,13 @@ We recommended Python 3.6+ since we test against those versions; older versions 
 
 You can download Python from the official [website](https://wwww.python.org/downloads/).
 
-After installing Python, clone this repository
+The recommended method of installation is via the package on pypi
+
+```txt
+pip3 install seekcamera-python
+```
+
+Alternatively, you can install manually. To do so, after installing Python, clone this repository
 
 ```txt
 git clone https://github.com/seekthermal/seekcamera-python.git
