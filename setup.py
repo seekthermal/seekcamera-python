@@ -42,4 +42,7 @@ setuptools.setup(
     install_requires=[
         "numpy>=1",
     ],
+    data_files=[
+        ("examples", ["examples/seekcamera-opencv.py", "examples/seekcamera-simple.py"])
+    ],
 )
