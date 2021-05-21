@@ -1,6 +1,7 @@
 # seekcamera-python
 
 [![main Actions Status](https://github.com/seekthermal/seekcamera-python/workflows/main/badge.svg)](https://github.com/seekthermal/seekcamera-python/actions)
+![GitHub](https://img.shields.io/github/license/seekthermal/seekcamera-python)
 
 Welcome! :wave:
 
