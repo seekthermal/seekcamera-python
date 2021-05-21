@@ -36,3 +36,8 @@ class SeekCameraVersion:
 
     def __str__(self):
         return "{}.{}.{}".format(self.MAJOR, self.MINOR, self.PATCH)
+
+    def __repr__(self):
+        return "SeekCameraVersion({}, {}, {})".format(
+            self.MAJOR, self.MINOR, self.PATCH
+        )
