@@ -108,8 +108,8 @@ class SeekCameraFirmwareVersion(object):
 class SeekCameraAppResourcesRegion(IntEnum):
     """Types of app resource regions.
 
-    App resource regions are memory regions on the device that are reserved for customer
-    use.
+    App resource regions are memory regions on the device that are reserved for
+    customer use.
 
     Attributes
     ----------
@@ -207,8 +207,8 @@ class SeekCameraShutterMode(IntEnum):
         enabled, the user does not need to manually trigger the shutter. This is the
         default shuttering mode.
     MANUAL: int
-        Shutter mode type case for manual shuttering. When manual shuttering is enabled,
-        the user is responsible for triggering the shutter.
+        Shutter mode type case for manual shuttering. When manual shuttering is
+        enabled, the user is responsible for triggering the shutter.
     """
 
     AUTO = 0
@@ -406,8 +406,8 @@ class SeekCameraManager(object):
         ----------
         discovery_mode: int
             Integer indicating the type of devices to be discovered. It corresponds to
-            the enumerated IO type. That is, it is a value of IO type or it is a bitwise
-            OR combination of the enum values.
+            the enumerated IO type. That is, it is a value of IO type or it is a
+            bitwise OR combination of the enum values.
 
         Raises
         ------
@@ -807,9 +807,9 @@ class SeekCamera(object):
         """Stores calibration data and pairs the camera.
 
         An optional callback can be used to provide progress updates.
-        Pairing refers to the process by which the sensor is associated with the host and
-        the embedded processor. The pairing process and requirements are highly dependent
-        on the characteristics of the camera and system.
+        Pairing refers to the process by which the sensor is associated with the host
+        and the embedded processor. The pairing process and requirements are highly
+        dependent on the characteristics of the camera and system.
 
         WARNING: Function should not be called when a capture session is live. Pairing
         commands are only applicable to Micro Cores.
@@ -817,8 +817,8 @@ class SeekCamera(object):
         Parameters
         ----------
         source_dir: str
-            If a false type, the calibration data is read from sensor flash. If non false
-            type, the calibration data is read from the filesystem.
+            If a false type, the calibration data is read from sensor flash. If non
+            false type, the calibration data is read from the filesystem.
         callback: callable
             Optional memory access callback that provides progress updates.
         user_data: any
@@ -848,10 +848,10 @@ class SeekCamera(object):
     def store_flat_scene_correction(self, fsc_id, callback=None, user_data=None):
         """Stores a flat scene correction (FSC).
 
-        The FSC is always stored to the host filesystem; it is also stored to the device
-        if supported. An optional callback can be used to provide progress updates. FSC
-        refers to the procedure used to correct non-uniformity in the thermal image
-        introduced by the OEMs manufacturing process.
+        The FSC is always stored to the host filesystem; it is also stored to the
+        device if supported. An optional callback can be used to provide progress
+        updates. FSC refers to the procedure used to correct non-uniformity in the
+        thermal image introduced by the OEMs manufacturing process.
 
         NOTE: The camera must start imaging to compute and store a FSC. The camera must
         stop imaging to persistently save a FSC.
@@ -889,8 +889,8 @@ class SeekCamera(object):
     def delete_flat_scene_correction(self, fsc_id, callback=None, user_data=None):
         """Deletes a flat scene correction (FSC).
 
-        The FSC will be deleted from any location it was stored. An optional callback can
-        be used to provide progress updates.
+        The FSC will be deleted from any location it was stored. An optional callback
+        can be used to provide progress updates.
 
         NOTE: The camera must not be imaging to delete a FSC.
 
@@ -928,8 +928,8 @@ class SeekCamera(object):
         """Loads application resources into host memory.
 
         The source region may either be the camera internal memory or the SDK internal
-        cache. Resources in each region must be <= 64KB. An optional callback can be used
-        to provide progress updates.
+        cache. Resources in each region must be <= 64KB. An optional callback can be
+        used to provide progress updates.
 
         WARNING: Function should not be called when a capture session is live.
 
@@ -973,9 +973,9 @@ class SeekCamera(object):
     ):
         """Stores application resources to either the host or the device.
 
-        The source region is host memory. The destination region may either be the camera
-        internal memory or the SDK internal cache. Resources in each region must be
-        <= 64KB. An optional callback can be used to provoide progress updates.
+        The source region is host memory. The destination region may either be the
+        camera internal memory or the SDK internal cache. Resources in each region must
+        be <= 64KB. An optional callback can be used to provoide progress updates.
 
         WARNING: Function should not be called when a capture session is live.
 
@@ -1016,8 +1016,8 @@ class SeekCamera(object):
     def capture_session_start(self, frame_format):
         """Begins streaming frames of the specified formats from the camera.
 
-        Generally a frame available callback should be pre-registered in order to receive
-        frames, but doing so is not required.
+        Generally a frame available callback should be pre-registered in order to
+        receive frames, but doing so is not required.
 
         WARNING: Camera functions that interact with flash storage should not be called
         when a capture session is live.
@@ -1032,8 +1032,8 @@ class SeekCamera(object):
         Parameters
         ----------
         frame_format: int
-            Bitwise OR combination of the frame formats to output. The frame format types
-            are specified by SeekCameraFrameFormat.
+            Bitwise OR combination of the frame formats to output. The frame format
+            types are specified by SeekCameraFrameFormat.
 
         Raises
         ------
@@ -1060,8 +1060,8 @@ class SeekCamera(object):
     def register_frame_available_callback(self, callback, user_data=None):
         """Registers a user frame available callback function with the camera.
 
-        The callback is fired every time a new frame is available. There can only be one
-        registered frame available callback at a time.
+        The callback is fired every time a new frame is available. There can only be
+        one registered frame available callback at a time.
 
         Parameters
         ----------
@@ -1132,8 +1132,8 @@ class SeekCamera(object):
     def agc_mode(self):
         """Gets/sets the active AGC mode.
 
-        Settings are refreshed between frames. This method can only be performed after a
-        capture session has started.
+        Settings are refreshed between frames. This method can only be performed after
+        a capture session has started.
 
         Returns
         -------
@@ -1243,9 +1243,9 @@ class SeekCamera(object):
         """Gets/sets the global scene emissivity.
 
         Emissivity is the measure of an object's ability to emit thermal radiation.
-        It may take on values in the closed interval [0,1] with floating point precision.
-        Settings are refreshed between frames. This method can only be performed after a
-        capture session has started.
+        It may take on values in the closed interval [0,1] with floating point
+        precision.  Settings are refreshed between frames. This method can only be
+        performed after a capture session has started.
 
         Returns
         -------
@@ -1340,8 +1340,8 @@ class SeekCamera(object):
     def get_filter_state(self, filter_type):
         """Gets the state of an image processing filter.
 
-        Settings are refreshed between frames. This method can only be performed after a
-        capture session has started.
+        Settings are refreshed between frames. This method can only be performed after
+        a capture session has started.
 
         Parameters
         ----------
@@ -1373,8 +1373,8 @@ class SeekCamera(object):
 class SeekCameraFrameFormat(IntEnum):
     """Represents the types of output frame formats.
 
-    Multiple frame formats can be captured simultaneously. However only one Display frame
-    format and one Thermography frame format can exist in a capture session. The
+    Multiple frame formats can be captured simultaneously. However only one Display
+    frame format and one Thermography frame format can exist in a capture session. The
     exception is that grayscale can be captured along with another color Display format.
 
     NOTE: All format types are little endian byte order.
@@ -1410,9 +1410,11 @@ class SeekCameraFrameFormat(IntEnum):
         Color RGB565 format. To output RGB565 data, the SDK performs conversion from
         ARGB8888.
     COLOR_AYUV: int
-        Color AYUV format. To output AYUV data, the SDK performs conversion from ARGB8888.
+        Color AYUV format. To output AYUV data, the SDK performs conversion from
+        ARGB8888.
     COLOR_YUY2: int
-        Color YUY2 format. To output YUY2 data, the SDK performs conversion from ARGB8888.
+        Color YUY2 format. To output YUY2 data, the SDK performs conversion from
+        ARGB8888.
     """
 
     CORRECTED = 0x04
@@ -1484,7 +1486,8 @@ class SeekCameraFrame(object):
     def corrected(self):
         """Gets the corrected frame.
 
-        NOTE: The corrected format must have been specified in the capture session flags.
+        NOTE: The corrected format must have been specified in the capture session
+        flags.
 
         Returns
         -------
@@ -1614,7 +1617,8 @@ class SeekCameraFrame(object):
     def color_ayuv(self):
         """Gets the AYUV frame.
 
-        NOTE: The color AYUV format must have been specified in the capture session flags.
+        NOTE: The color AYUV format must have been specified in the capture session
+        flags.
 
         Returns
         -------
@@ -1632,7 +1636,8 @@ class SeekCameraFrame(object):
     def color_yuy2(self):
         """Gets the color YUY2 frame.
 
-        NOTE: The color YUY2 format must have been specified in the capture session flags.
+        NOTE: The color YUY2 format must have been specified in the capture session
+        flags.
 
         Returns
         -------
@@ -1663,8 +1668,8 @@ class SeekCameraFrame(object):
 class SeekCameraFrameHeader(object):
     """Represents a common header for the camera frame.
 
-    It is fixed size (2048 bytes) and byte aligned. It can be accessed in each individual
-    SeekFrame.
+    It is fixed size (2048 bytes) and byte aligned. It can be accessed in each
+    individual SeekFrame.
 
     Properties
     ----------
