@@ -32,7 +32,7 @@ The Python language bindings mirror all the major functionality in our SDK.
 
 ### Supported platforms :electric_plug:
 
-The Python language bindinge will run on a wide variety of common processors and Linux/Windows OSs.
+The Python language bindings will run on a wide variety of common processors and Linux/Windows OSs.
 
 The requirements are
 * Python 3.X
