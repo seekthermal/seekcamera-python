@@ -768,6 +768,9 @@ class SeekCamera(object):
 
         WARNING: Function should not be called when a capture session is live.
 
+        NOTE: This function is not supported, and is not neccessary, for
+        Micro Core SPI cores.
+
         Parameters
         ----------
         upgrade_file: str
