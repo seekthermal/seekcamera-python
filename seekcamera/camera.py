@@ -284,6 +284,13 @@ class SeekCameraColorPaletteData(object):
             self._data[key] = data
 
     def __len__(self):
+        """Gets the number of color values in the color palette data.
+
+        Returns
+        -------
+        int
+            Number of color values in the color palette data.
+        """
         return len(self._data)
 
 
