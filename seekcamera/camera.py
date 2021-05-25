@@ -768,9 +768,8 @@ class SeekCamera(object):
 
         WARNING: Function should not be called when a capture session is live.
 
-        WARNING: Function does not provide power failsafe firmware update on Micro Core
-        SPI cores. If a firmware update fails for one of those cores, please reload
-        firmware using the JTAG/SWD procedure.
+        NOTE: This function is not supported, and is not neccessary, for
+        Micro Core SPI cores.
 
         Parameters
         ----------
