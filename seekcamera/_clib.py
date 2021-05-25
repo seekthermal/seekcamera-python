@@ -312,6 +312,14 @@ def configure_dll():
     _cdll.seekcamera_set_color_palette.restype = ctypes.c_int32
     _cdll.seekcamera_set_color_palette.argtypes = [ctypes.c_void_p, ctypes.c_int32]
 
+    # seekcamera_set_color_palette_data
+    _cdll.seekcamera_set_color_palette_data.restype = ctypes.c_int32
+    _cdll.seekcamera_set_color_palette_data.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_int32,
+        ctypes.POINTER(CSeekCameraColorPaletteDataEntry * 256),
+    ]
+
     # seekcamera_get_agc_mode
     _cdll.seekcamera_get_agc_mode.restype = ctypes.c_int32
     _cdll.seekcamera_get_agc_mode.argtypes = [
@@ -457,6 +465,15 @@ def configure_dll():
     # seekframe_get_header
     _cdll.seekframe_get_header.restype = ctypes.POINTER(CSeekCameraFrameHeader)
     _cdll.seekframe_get_header.argtypes = [ctypes.c_void_p]
+
+
+class CSeekCameraColorPaletteDataEntry(ctypes.Structure):
+    _fields_ = [
+        ("b", ctypes.c_uint8),
+        ("g", ctypes.c_uint8),
+        ("r", ctypes.c_uint8),
+        ("a", ctypes.c_uint8),
+    ]
 
 
 class CSeekCameraFrameHeader(ctypes.Structure):
@@ -790,6 +807,12 @@ def cseekcamera_get_color_palette(camera):
 
 def cseekcamera_set_color_palette(camera, palette):
     return _cdll.seekcamera_set_color_palette(camera.pointer, ctypes.c_int32(palette))
+
+
+def cseekcamera_set_color_palette_data(camera, palette, palette_data):
+    return _cdll.seekcamera_set_color_palette_data(
+        camera.pointer, ctypes.c_int32(palette), ctypes.byref(palette_data)
+    )
 
 
 def cseekcamera_get_agc_mode(camera):
