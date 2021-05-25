@@ -1443,7 +1443,7 @@ class SeekCamera(object):
         if not isinstance(palette_data, SeekCameraColorPaletteData):
             raise SeekCameraInvalidParameterError
 
-        data = (_clib.CSeekCameraColorPaletteDataEntry * 256)()
+        data = (_clib.CSeekCameraColorPaletteDataEntry * len(palette_data))()
 
         for index, value in enumerate(palette_data):
             (b, g, r, a) = value
