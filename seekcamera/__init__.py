@@ -20,6 +20,7 @@ from seekcamera.camera import (
     SeekCameraFirmwareVersion,
     SeekCameraAppResourcesRegion,
     SeekCameraColorPalette,
+    SeekCameraColorPaletteData,
     SeekCameraAGCMode,
     SeekCameraShutterMode,
     SeekCameraTemperatureUnit,
