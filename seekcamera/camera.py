@@ -243,7 +243,7 @@ class SeekCameraColorPaletteData(object):
         StopIteration
             If at the end of the collection.
         """
-        if self._data_iter >= len(self._data):
+        if self._data_iter >= len(self):
             raise StopIteration
 
         result = self._data[self._data_iter]
@@ -257,7 +257,7 @@ class SeekCameraColorPaletteData(object):
         ----------
         key: Union[slice, int]
             Either a slice or a single index used to get the color values.
-        
+
         Returns
         -------
         Union[List[Tuple[int, int, int, int]], Tuple[int, int, int, int]]
@@ -282,6 +282,9 @@ class SeekCameraColorPaletteData(object):
             self._data[key.start : key.stop : key.step] = data
         else:
             self._data[key] = data
+
+    def __len__(self):
+        return len(self._data)
 
 
 class SeekCameraAGCMode(IntEnum):
@@ -668,6 +671,8 @@ class SeekCamera(object):
         Registers a user frame available callback function with the camera.
     shutter_trigger()
         Triggers the camera to shutter as soon as possible.
+    set_color_palette_data(palette, palette_data)
+        Sets the color palette data for a particular color palette.
     set_filter_state(filter_type, filter_state)
         Sets the state of an image processing filter.
     get_filter_state(filter_type)
@@ -1410,6 +1415,48 @@ class SeekCamera(object):
             raise SeekCameraInvalidParameterError
 
         status = _clib.cseekcamera_set_thermography_offset(self._camera, offset)
+        if is_error(status):
+            raise error_from_status(status)
+
+    def set_color_palette_data(self, palette, palette_data):
+        """Sets the color palette data for a particular color palette.
+
+        Parameters
+        ----------
+        palette: SeekCameraColorPalette
+            Enumerated type corresponding to the color palette for which to set
+            the data.
+        palette_data: SeekCameraColorPalettteData
+            Color values used to colorize the thermal image.
+
+        Raises
+        ------
+        SeekCameraInvalidParameterError
+            1) If the palette is not of type SeekCameraColorPalette.
+            2) If the plaette data is not of type SeekCameraColorPaletteData.
+        SeekCameraError
+            If an error occurs.
+        """
+        if not isinstance(palette, SeekCameraColorPalette):
+            raise SeekCameraInvalidParameterError
+
+        if not isinstance(palette_data, SeekCameraColorPaletteData):
+            raise SeekCameraInvalidParameterError
+
+        data = (_clib.CSeekCameraColorPaletteDataEntry * 256)()
+
+        for index, value in enumerate(palette_data):
+            (b, g, r, a) = value
+
+            data[index] = (
+                ctypes.c_uint8(b),
+                ctypes.c_uint8(g),
+                ctypes.c_uint8(r),
+                ctypes.c_uint8(a),
+            )
+
+        status = _clib.cseekcamera_set_color_palette_data(self._camera, palette, data)
+
         if is_error(status):
             raise error_from_status(status)
 
