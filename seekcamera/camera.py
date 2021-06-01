@@ -192,11 +192,8 @@ class SeekCameraColorPaletteData(object):
     Creating a new color palette data object with default data (all zeros).
     >>> palette_data = SeekCameraColorPaletteData()
 
-    Creating a new color palette data object with specified data.
-    >>> palette_data = SeekCameraColorPaletteData([(255, 0, 0, 0)] * 256)
-
     Iterating the values of a color palette data object.
-    >>> for value in palette_data: print(value)
+    >>> for index, value in enumerate(palette_data): print(value)
 
     Slicing a color palette object.
     >>> palette_data[1:4] = [(255, 0, 0, 0), (0, 255, 0, 0), (0, 0, 255, 0)]
