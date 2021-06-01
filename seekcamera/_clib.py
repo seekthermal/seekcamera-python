@@ -44,7 +44,7 @@ def configure_dll():
         return
 
     min_runtime_version_major = 4
-    min_runtime_version_minor = 0
+    min_runtime_version_minor = 1
     min_runtime_version_patch = 0
 
     if os.name == "nt":
