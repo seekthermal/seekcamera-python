@@ -143,13 +143,13 @@ $LD_LIBRARY_PATH/
 
 ---
 
-The minimum SDK runtime version for each stable release of the Python language bindings are shown below:
+The minimum SDK runtime version for each stable release of the Python language bindings is shown below:
 
 <table>
   <thead>
     <tr>
       <th>seekcamera-python</th>
-      <th>Minimum SDK runtime</th>
+      <th>Minimum SDK runtime version</th>
     </tr>
   </thead>
   <tbody>
