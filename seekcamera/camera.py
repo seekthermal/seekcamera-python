@@ -215,6 +215,9 @@ class SeekCameraColorPaletteData(object):
         self._data = data
         self._data_iter = 0
 
+    def __repr__(self):
+        return "SeekCameraColorPaletteData({})".format(self._data)
+
     def __iter__(self):
         """Iterates through the color values in the color palette data.
 
