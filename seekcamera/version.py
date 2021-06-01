@@ -31,7 +31,7 @@ class SeekCameraVersion:
     """
 
     MAJOR = 1
-    MINOR = 0
+    MINOR = 1
     PATCH = 0
 
     def __str__(self):
