@@ -143,6 +143,27 @@ $LD_LIBRARY_PATH/
 
 ---
 
+The minimum SDK runtime version for each stable release of the Python language bindings is shown below:
+
+<table>
+  <thead>
+    <tr>
+      <th>seekcamera-python</th>
+      <th>Minimum SDK runtime version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1.0.0</td>
+      <td>4.0.0</td>
+    </tr>
+    <tr>
+      <td>1.1.0</td>
+      <td>4.1.0</td>
+    </tr>
+  </tbody>
+</table>
+
 ## License :balance_scale:
 
 The project is licensed under the Apache 2.0 License.

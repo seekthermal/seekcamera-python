@@ -166,12 +166,131 @@ class SeekCameraColorPalette(IntEnum):
     AMBER = 6
     HI = 7
     GREEN = 8
+    USER_0 = 9
+    USER_1 = 10
+    USER_2 = 11
+    USER_3 = 12
+    USER_4 = 13
 
     def __str__(self):
         return self.name
 
     def __repr__(self):
         return "SeekCameraColorPalette({})".format(self.value)
+
+
+class SeekCameraColorPaletteData(object):
+    """Collection of color values used to colorize a thermal image.
+
+    Each entry represents a component of a pixel. The values should be in ascending
+    order going from coldest to hottest temperature. It has 256 distinct entries.
+    Each entry is a tuple of color channels ordered as (b, g, r, a).
+
+    Examples
+    --------
+    Creating a new color palette data object with default data (all zeros).
+    >>> palette_data = SeekCameraColorPaletteData()
+
+    Iterating the values of a color palette data object.
+    >>> for index, value in enumerate(palette_data): print(value)
+
+    Slicing a color palette object.
+    >>> palette_data[1:4] = [(255, 0, 0, 0), (0, 255, 0, 0), (0, 0, 255, 0)]
+    >>> print(palette_data[1:4])
+    """
+
+    def __init__(self, data=None):
+        """Creates a color palette data object.
+
+        Parameters
+        ----------
+        data: Optional[Iterable[Tuple[int, int, int, int]]]
+            Collection of tuples that specify the color values for the color palette.
+            It should have length 256; the tuples should be specified in (b, g, r, a)
+            order.
+        """
+        if data is None:
+            data = [(0, 0, 0, 0)] * 256
+
+        self._data = data
+        self._data_iter = 0
+
+    def __repr__(self):
+        return "SeekCameraColorPaletteData({})".format(self._data)
+
+    def __iter__(self):
+        """Iterates through the color values in the color palette data.
+
+        Returns
+        -------
+        SeekCameraColorPaletteData
+            Reference to the color palette data object to iterate.
+        """
+        self._data_iter = 0
+        return self
+
+    def __next__(self):
+        """Gets the next color value in the current iteration.
+
+        Returns
+        -------
+        Tuple[int, int, int, int]
+            The next color palette value in (b, g, r, a) order.
+
+        Raises
+        ------
+        StopIteration
+            If at the end of the collection.
+        """
+        if self._data_iter >= len(self):
+            raise StopIteration
+
+        result = self._data[self._data_iter]
+        self._data_iter += 1
+        return result
+
+    def __getitem__(self, key):
+        """Gets an color value or slice of color values.
+
+        Parameters
+        ----------
+        key: Union[slice, int]
+            Either a slice or a single index used to get the color values.
+
+        Returns
+        -------
+        Union[List[Tuple[int, int, int, int]], Tuple[int, int, int, int]]
+            Either a slice of color values or a single color value.
+        """
+        if isinstance(key, slice):
+            return self._data[key.start : key.stop : key.step]
+        else:
+            return self._data[key]
+
+    def __setitem__(self, key, data):
+        """Sets an color value or slice of color values.
+
+        Parameters
+        ----------
+        key: Union[slice, int]
+            Either a slice or a single index used to set the color values.
+        data: Union[List[Tuple[int, int, int, int]], Tuple[int, int, int, int]]
+            Either a slice of color values or a single color value.
+        """
+        if isinstance(key, slice):
+            self._data[key.start : key.stop : key.step] = data
+        else:
+            self._data[key] = data
+
+    def __len__(self):
+        """Gets the number of color values in the color palette data.
+
+        Returns
+        -------
+        int
+            Number of color values in the color palette data.
+        """
+        return len(self._data)
 
 
 class SeekCameraAGCMode(IntEnum):
@@ -558,6 +677,8 @@ class SeekCamera(object):
         Registers a user frame available callback function with the camera.
     shutter_trigger()
         Triggers the camera to shutter as soon as possible.
+    set_color_palette_data(palette, palette_data)
+        Sets the color palette data for a particular color palette.
     set_filter_state(filter_type, filter_state)
         Sets the state of an image processing filter.
     get_filter_state(filter_type)
@@ -1300,6 +1421,48 @@ class SeekCamera(object):
             raise SeekCameraInvalidParameterError
 
         status = _clib.cseekcamera_set_thermography_offset(self._camera, offset)
+        if is_error(status):
+            raise error_from_status(status)
+
+    def set_color_palette_data(self, palette, palette_data):
+        """Sets the color palette data for a particular color palette.
+
+        Parameters
+        ----------
+        palette: SeekCameraColorPalette
+            Enumerated type corresponding to the color palette for which to set
+            the data.
+        palette_data: SeekCameraColorPalettteData
+            Color values used to colorize the thermal image.
+
+        Raises
+        ------
+        SeekCameraInvalidParameterError
+            1) If the palette is not of type SeekCameraColorPalette.
+            2) If the plaette data is not of type SeekCameraColorPaletteData.
+        SeekCameraError
+            If an error occurs.
+        """
+        if not isinstance(palette, SeekCameraColorPalette):
+            raise SeekCameraInvalidParameterError
+
+        if not isinstance(palette_data, SeekCameraColorPaletteData):
+            raise SeekCameraInvalidParameterError
+
+        data = (_clib.CSeekCameraColorPaletteDataEntry * len(palette_data))()
+
+        for index, value in enumerate(palette_data):
+            (b, g, r, a) = value
+
+            data[index] = (
+                ctypes.c_uint8(b),
+                ctypes.c_uint8(g),
+                ctypes.c_uint8(r),
+                ctypes.c_uint8(a),
+            )
+
+        status = _clib.cseekcamera_set_color_palette_data(self._camera, palette, data)
+
         if is_error(status):
             raise error_from_status(status)
 
