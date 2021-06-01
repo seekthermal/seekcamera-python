@@ -16,7 +16,6 @@
 
 import ctypes
 from enum import IntEnum
-from collections import namedtuple
 
 import numpy as np
 
