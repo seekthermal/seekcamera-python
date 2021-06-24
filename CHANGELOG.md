@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.1.1
+
+Stable patch release for v1.1.X.
+
+Relesed on 06/24/2021.
+
+Highlights
+* Bug fix for invalid argtypes assignment in seekcamera_set_temperature_unit CDLL stub.
+* Bug fix for missing conversions of enumerated integers to higher-level SeekCamera objects.
+
 ## v1.1.0
 
 Second stable release of the Python language bindings for the Seek Thermal SDK 4.X.

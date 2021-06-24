@@ -161,6 +161,10 @@ The minimum SDK runtime version for each stable release of the Python language b
       <td>1.1.0</td>
       <td>4.1.0</td>
     </tr>
+    <tr>
+      <td>1.1.1</td>
+      <td>4.1.0</td>
+    </tr>
   </tbody>
 </table>
 
