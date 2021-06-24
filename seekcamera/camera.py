@@ -1237,7 +1237,7 @@ class SeekCamera(object):
         if is_error(status):
             raise error_from_status(status)
 
-        return palette.value
+        return SeekCameraColorPalette(palette.value)
 
     @color_palette.setter
     def color_palette(self, palette):
@@ -1269,7 +1269,7 @@ class SeekCamera(object):
         if is_error(status):
             raise error_from_status(status)
 
-        return mode.value
+        return SeekCameraAGCMode(mode.value)
 
     @agc_mode.setter
     def agc_mode(self, mode):
@@ -1302,7 +1302,7 @@ class SeekCamera(object):
         if is_error(status):
             raise error_from_status(status)
 
-        return mode.value
+        return SeekCameraShutterMode(mode.value)
 
     @shutter_mode.setter
     def shutter_mode(self, mode):
@@ -1333,7 +1333,7 @@ class SeekCamera(object):
         if is_error(status):
             raise error_from_status(status)
 
-        return unit.value
+        return SeekCameraTemperatureUnit(unit.value)
 
     @temperature_unit.setter
     def temperature_unit(self, unit):
