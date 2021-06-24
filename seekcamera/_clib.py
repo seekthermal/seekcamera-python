@@ -351,7 +351,7 @@ def configure_dll():
 
     # seekcamera_set_temperature_unit
     _cdll.seekcamera_set_temperature_unit.restype = ctypes.c_int32
-    _cdll.seekcamera_get_temperature_unit.argtypes = [ctypes.c_void_p, ctypes.c_int32]
+    _cdll.seekcamera_set_temperature_unit.argtypes = [ctypes.c_void_p, ctypes.c_int32]
 
     # seekcamera_shutter_trigger
     _cdll.seekcamera_shutter_trigger.restype = ctypes.c_int32
