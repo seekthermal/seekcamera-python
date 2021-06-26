@@ -4,7 +4,7 @@
 
 Stable patch release for v1.1.X.
 
-Relesed on 06/24/2021.
+Released on 06/24/2021.
 
 Highlights
 * Bug fix for invalid argtypes assignment in seekcamera_set_temperature_unit CDLL stub.
