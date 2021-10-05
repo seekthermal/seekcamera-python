@@ -9,7 +9,7 @@ This is the official home of the Python language bindings for the Seek Thermal S
 
 ## About :scroll:
 
-In general, the [Seek Thermal SDK](https://developer.thermal.com) allows customers to develop applications that interface with our thermal camera cores easily, flexibly, and efficiently.
+In general, the Seek Thermal SDK, available on the [Seek Thermal Developers Portal](https://developer.thermal.com), allows customers to develop applications that interface with our thermal camera cores easily, flexibly, and efficiently.
 In addition, examples are provided to demonstrate the use of several functional areas and can be a starting point for your own projects.
 
 The Python language bindings supplement and extend the SDK's traditional C interface in a higher-level language.
