@@ -2320,6 +2320,40 @@ class SeekCameraFrame(object):
 
         return SeekFrame(frame, fmt)
 
+    def lock(self):
+        """Locks a camera frame for exclusive access to the underlying frame data.
+
+        Notes
+        -----
+        This allows the application to safely access the frame outside the context of the frame callback.
+        1. There is no need to use this API (or the corresponding unlock) if all processing of the
+           frame and frame data is done in the context of the frame callback.
+        2. If the camera frame is already locked, calling this API multiple times has no effect.
+        3. The user is responsible for unlocking a camera frame when exclusive access to the
+           frame data is no longer needed.
+        4. If the capture session is stopped while the camera frame is locked, exclusive access to
+           the frame data is no longer guaranteed.
+        """
+        status = _clib.cseekcamera_frame_lock(self._camera_frame)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+    def unlock(self):
+        """Unblocks a camera frame that was previously locked.
+
+        Notes
+        -----
+        1. This API should only be used outside the context of the frame callback.
+           There is no need for this API (or the corresponding lock API) if all
+           processing of the frame (and frame data) is done in the context of the frame callback.
+        2. If the camera frame is already unlocked, calling this API multiple times has no effect.
+        """
+        status = _clib.cseekcamera_frame_unlock(self._camera_frame)
+
+        if is_error(status):
+            raise error_from_status(status)
+
 
 class SeekCameraFrameHeader(object):
     """Represents a common header for the camera frame.
@@ -2836,7 +2870,7 @@ class SeekFrame:
         self.format = fmt
 
     def __repr__(self):
-        return "SeekFrame({})".format(self._frame, self.format)
+        return "SeekFrame({}, {})".format(self._frame, self.format)
 
     @property
     def width(self):

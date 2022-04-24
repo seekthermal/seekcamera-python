@@ -563,13 +563,21 @@ def configure_dll():
         ctypes.POINTER(ctypes.c_int32),
     ]
 
-    # seekcamera_get_frame_by_format
+    # seekcamera_frame_frame_by_format
     _cdll.seekcamera_frame_get_frame_by_format.restype = ctypes.c_int32
     _cdll.seekcamera_frame_get_frame_by_format.argtypes = [
         ctypes.c_void_p,
         ctypes.c_int32,
         ctypes.POINTER(ctypes.c_void_p),
     ]
+
+    # seekcamera_frame_lock
+    _cdll.seekcamera_frame_lock.restype = ctypes.c_int32
+    _cdll.seekcamera_frame_lock.argtypes = [ctypes.c_void_p]
+
+    # seekcamera_frame_unlock
+    _cdll.seekcamera_frame_unlock.restype = ctypes.c_int32
+    _cdll.seekcamera_frame_unlock.argtypes = [ctypes.c_void_p]
 
     # seekframe_get_width
     _cdll.seekframe_get_width.restype = ctypes.c_size_t
@@ -1284,6 +1292,14 @@ def cseekcamera_frame_get_frame_by_format(camera_frame, fmt):
     )
 
     return CSeekFrame(frame), status
+
+
+def cseekcamera_frame_lock(camera_frame):
+    return _cdll.seekcamera_frame_lock(camera_frame.pointer)
+
+
+def cseekcamera_frame_unlock(camera_frame):
+    return _cdll.seekcamera_frame_unlock(camera_frame.pointer)
 
 
 def cseekcamera_version_get_major():
