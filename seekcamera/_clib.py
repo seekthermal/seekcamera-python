@@ -270,6 +270,7 @@ def configure_dll():
         ctypes.c_void_p,
         ctypes.c_int32,
         ctypes.POINTER(ctypes.c_void_p),
+        ctypes.c_size_t,
         _SEEKCAMERA_MEMORY_ACCESS_CALLBACK_T,
         ctypes.py_object,
     ]
