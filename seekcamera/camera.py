@@ -1450,7 +1450,7 @@ class SeekCamera(object):
         if is_error(status):
             raise error_from_status(status)
 
-        return SeekCameraHistEQAGCPlateauRedistributionMode(mode)
+        return SeekCameraHistEQAGCPlateauRedistributionMode(mode.value)
 
     @histeq_agc_plateau_redistribution_mode.setter
     def histeq_agc_plateau_redistribution_mode(self, mode):
@@ -1673,7 +1673,7 @@ class SeekCamera(object):
         SeekCameraError
             If an error occurs.
         """
-        trim_right, status = _clib.cseekcamera_get_histeq_agc_trim_left(self._camera)
+        trim_right, status = _clib.cseekcamera_get_histeq_agc_trim_right(self._camera)
 
         if is_error(status):
             raise error_from_status(status)

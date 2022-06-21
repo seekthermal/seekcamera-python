@@ -350,8 +350,8 @@ def configure_dll():
     ]
 
     # seekcamera_set_histeq_agc_plateau_redistribution_mode
-    _cdll.seekcamera_get_histeq_agc_plateau_redistribution_mode.restype = ctypes.c_int32
-    _cdll.seekcamera_get_histeq_agc_plateau_redistribution_mode.argtypes = [
+    _cdll.seekcamera_set_histeq_agc_plateau_redistribution_mode.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_plateau_redistribution_mode.argtypes = [
         ctypes.c_void_p,
         ctypes.c_int32,
     ]
@@ -1091,7 +1091,7 @@ def cseekcamera_get_histeq_agc_gain_limit_factor_ymin(camera):
 
 
 def cseekcamera_set_histeq_agc_gain_limit_factor_ymin(camera, ymin):
-    return _cdll.seekcamera_set_histeq_gain_limit_factor_ymin(
+    return _cdll.seekcamera_set_histeq_agc_gain_limit_factor_ymin(
         camera.pointer, ctypes.c_float(ymin)
     )
 
