@@ -269,7 +269,8 @@ def configure_dll():
     _cdll.seekcamera_load_app_resources.argtypes = [
         ctypes.c_void_p,
         ctypes.c_int32,
-        ctypes.POINTER(ctypes.c_byte),
+        ctypes.POINTER(ctypes.c_void_p),
+        ctypes.c_size_t,
         _SEEKCAMERA_MEMORY_ACCESS_CALLBACK_T,
         ctypes.py_object,
     ]
@@ -279,7 +280,7 @@ def configure_dll():
     _cdll.seekcamera_store_app_resources.argtypes = [
         ctypes.c_void_p,
         ctypes.c_int32,
-        ctypes.POINTER(ctypes.c_byte),
+        ctypes.POINTER(ctypes.c_void_p),
         ctypes.c_size_t,
         _SEEKCAMERA_MEMORY_ACCESS_CALLBACK_T,
         ctypes.py_object,
@@ -748,10 +749,12 @@ def cseekcamera_delete_flat_scene_correction(camera, fsc_id, callback, user_data
 
 def cseekcamera_load_app_resources(camera, region, data_size, callback, user_data):
     data = (ctypes.c_byte * data_size)()
+    data_pointer = ctypes.cast(data, ctypes.POINTER(ctypes.c_void_p))
+
     status = _cdll.seekcamera_load_app_resources(
         camera.pointer,
         ctypes.c_int32(region),
-        ctypes.pointer(data),
+        data_pointer,
         ctypes.c_size_t(data_size),
         _memory_access_callback(callback),
         ctypes.py_object(user_data),
@@ -763,10 +766,14 @@ def cseekcamera_load_app_resources(camera, region, data_size, callback, user_dat
 def cseekcamera_store_app_resources(
     camera, region, data, data_size, callback, user_data
 ):
+    data_pointer = ctypes.cast(
+        (ctypes.c_byte * data_size).from_buffer(data), ctypes.POINTER(ctypes.c_void_p)
+    )
+
     return _cdll.seekcamera_store_app_resources(
         camera.pointer,
         ctypes.c_int32(region),
-        ctypes.pointer((ctypes.c_byte * data_size).from_buffer(data)),
+        data_pointer,
         ctypes.c_size_t(data_size),
         _memory_access_callback(callback),
         ctypes.py_object(user_data),
