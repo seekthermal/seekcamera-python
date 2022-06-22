@@ -1075,10 +1075,10 @@ class SeekCamera(object):
         if callback is not None and not callable(callback):
             raise SeekCameraInvalidParameterError
 
-        status = _clib.cseekcamera_store_calibration_data(            
+        status = _clib.cseekcamera_store_calibration_data(
             self._camera, source_dir, callback, user_data
         )
-        
+
         if is_error(status):
             raise error_from_status(status)
 
