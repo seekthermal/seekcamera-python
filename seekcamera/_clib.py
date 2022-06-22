@@ -44,7 +44,7 @@ def configure_dll():
         return
 
     min_runtime_version_major = 4
-    min_runtime_version_minor = 1
+    min_runtime_version_minor = 2
     min_runtime_version_patch = 0
 
     if os.name == "nt":
@@ -332,6 +332,171 @@ def configure_dll():
     _cdll.seekcamera_set_agc_mode.restype = ctypes.c_int32
     _cdll.seekcamera_set_agc_mode.argtypes = [ctypes.c_void_p, ctypes.c_int32]
 
+    # seekcamera_get_histeq_agc_plateau
+    _cdll.seekcamera_get_histeq_agc_plateau.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_plateau.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_float),
+    ]
+
+    # seekcamera_set_histeq_agc_plateau
+    _cdll.seekcamera_set_histeq_agc_plateau.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_plateau.argtypes = [ctypes.c_void_p, ctypes.c_float]
+
+    # seekcamera_get_histeq_agc_plateau_redistribution_mode
+    _cdll.seekcamera_get_histeq_agc_plateau_redistribution_mode.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_plateau_redistribution_mode.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_int32),
+    ]
+
+    # seekcamera_set_histeq_agc_plateau_redistribution_mode
+    _cdll.seekcamera_set_histeq_agc_plateau_redistribution_mode.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_plateau_redistribution_mode.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_int32,
+    ]
+
+    # seekcamera_get_histeq_agc_gain_limit
+    _cdll.seekcamera_get_histeq_agc_gain_limit.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_gain_limit.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_float),
+    ]
+
+    # seekcamera_set_histeq_agc_gain_limit
+    _cdll.seekcamera_set_histeq_agc_gain_limit.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_gain_limit.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_float,
+    ]
+
+    # seekcamera_get_histeq_agc_gain_limit_factor_mode
+    _cdll.seekcamera_get_histeq_agc_gain_limit_factor_mode.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_gain_limit_factor_mode.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_int32),
+    ]
+
+    # seekcamera_set_histeq_agc_gain_limit_factor_mode
+    _cdll.seekcamera_set_histeq_agc_gain_limit_factor_mode.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_gain_limit_factor_mode.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_int32,
+    ]
+
+    # seekcamera_get_histeq_agc_gain_limit_factor_xmax
+    _cdll.seekcamera_get_histeq_agc_gain_limit_factor_xmax.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_gain_limit_factor_xmax.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_uint32),
+    ]
+
+    # seekcamera_set_histeq_agc_gain_limit_factor_xmax
+    _cdll.seekcamera_set_histeq_agc_gain_limit_factor_xmax.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_gain_limit_factor_xmax.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_uint32,
+    ]
+
+    # seekcamera_get_histeq_agc_gain_limit_factor_ymin
+    _cdll.seekcamera_get_histeq_agc_gain_limit_factor_ymin.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_gain_limit_factor_ymin.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_float),
+    ]
+
+    # seekcamera_set_histeq_agc_gain_limit_factor_ymin
+    _cdll.seekcamera_set_histeq_agc_gain_limit_factor_ymin.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_gain_limit_factor_ymin.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_float,
+    ]
+
+    # seekcamera_get_histeq_agc_alpha_time_seconds
+    _cdll.seekcamera_get_histeq_agc_alpha_time_seconds.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_alpha_time_seconds.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_float),
+    ]
+
+    # seekcamera_set_histeq_agc_alpha_time_seconds
+    _cdll.seekcamera_set_histeq_agc_alpha_time_seconds.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_alpha_time_seconds.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_float,
+    ]
+
+    # seekcamera_get_histeq_agc_trim_left
+    _cdll.seekcamera_get_histeq_agc_trim_left.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_trim_left.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_float),
+    ]
+
+    # seekcamera_set_histeq_agc_trim_left
+    _cdll.seekcamera_set_histeq_agc_trim_left.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_trim_left.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_float,
+    ]
+
+    # seekcamera_get_histeq_agc_trim_right
+    _cdll.seekcamera_get_histeq_agc_trim_right.restype = ctypes.c_int32
+    _cdll.seekcamera_get_histeq_agc_trim_right.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_float),
+    ]
+
+    # seekcamera_set_histeq_agc_trim_right
+    _cdll.seekcamera_set_histeq_agc_trim_right.restype = ctypes.c_int32
+    _cdll.seekcamera_set_histeq_agc_trim_right.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_float,
+    ]
+
+    # seekcamera_get_linear_agc_lock_mode
+    _cdll.seekcamera_get_linear_agc_lock_mode.restype = ctypes.c_int32
+    _cdll.seekcamera_get_linear_agc_lock_mode.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_int32),
+    ]
+
+    # seekcamera_set_linear_agc_lock_mode
+    _cdll.seekcamera_set_linear_agc_lock_mode.restype = ctypes.c_int32
+    _cdll.seekcamera_set_linear_agc_lock_mode.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_int32,
+    ]
+
+    # seekcamera_get_linear_agc_lock_min
+    _cdll.seekcamera_get_linear_agc_lock_min.restype = ctypes.c_int32
+    _cdll.seekcamera_get_linear_agc_lock_min.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_uint32),
+    ]
+
+    # seekcamera_set_linear_agc_lock_min
+    _cdll.seekcamera_set_linear_agc_lock_min.restype = ctypes.c_int32
+    _cdll.seekcamera_set_linear_agc_lock_min.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_uint32,
+    ]
+
+    # seekcamera_get_linear_agc_lock_max
+    _cdll.seekcamera_get_linear_agc_lock_max.restype = ctypes.c_int32
+    _cdll.seekcamera_get_linear_agc_lock_max.argtypes = [
+        ctypes.c_void_p,
+        ctypes.POINTER(ctypes.c_uint32),
+    ]
+
+    # seekcamera_set_linear_agc_lock_max
+    _cdll.seekcamera_set_linear_agc_lock_max.restype = ctypes.c_int32
+    _cdll.seekcamera_set_linear_agc_lock_max.argtypes = [
+        ctypes.c_void_p,
+        ctypes.c_uint32,
+    ]
+
     # seekcamera_get_shutter_mode
     _cdll.seekcamera_get_shutter_mode.restype = ctypes.c_int32
     _cdll.seekcamera_get_shutter_mode.argtypes = [
@@ -399,13 +564,21 @@ def configure_dll():
         ctypes.POINTER(ctypes.c_int32),
     ]
 
-    # seekcamera_get_frame_by_format
+    # seekcamera_frame_frame_by_format
     _cdll.seekcamera_frame_get_frame_by_format.restype = ctypes.c_int32
     _cdll.seekcamera_frame_get_frame_by_format.argtypes = [
         ctypes.c_void_p,
         ctypes.c_int32,
         ctypes.POINTER(ctypes.c_void_p),
     ]
+
+    # seekcamera_frame_lock
+    _cdll.seekcamera_frame_lock.restype = ctypes.c_int32
+    _cdll.seekcamera_frame_lock.argtypes = [ctypes.c_void_p]
+
+    # seekcamera_frame_unlock
+    _cdll.seekcamera_frame_unlock.restype = ctypes.c_int32
+    _cdll.seekcamera_frame_unlock.argtypes = [ctypes.c_void_p]
 
     # seekframe_get_width
     _cdll.seekframe_get_width.restype = ctypes.c_size_t
@@ -509,7 +682,17 @@ class CSeekCameraFrameHeader(ctypes.Structure):
         ("thermography_spot_x", ctypes.c_uint16),
         ("thermography_spot_y", ctypes.c_uint16),
         ("thermography_spot_value", ctypes.c_float),
-        ("reserved", ctypes.c_uint8 * 1913),
+        ("agc_mode", ctypes.c_uint8),
+        ("histeq_agc_num_bins", ctypes.c_uint16),
+        ("histeq_agc_bin_width", ctypes.c_uint16),
+        ("histeq_agc_gain_limit_factor", ctypes.c_float),
+        ("histeq_agc_reserved", ctypes.c_uint8 * 64),
+        ("linear_agc_min", ctypes.c_uint32),
+        ("linear_agc_max", ctypes.c_uint32),
+        ("linear_agc_reserved", ctypes.c_uint8 * 32),
+        ("gradient_correction_filter_state", ctypes.c_uint8),
+        ("flat_scene_correction_filter_state", ctypes.c_uint8),
+        ("reserved", ctypes.c_uint8 * 1798),
     ]
 
 
@@ -832,6 +1015,184 @@ def cseekcamera_set_agc_mode(camera, mode):
     return _cdll.seekcamera_set_agc_mode(camera.pointer, ctypes.c_int32(mode))
 
 
+def cseekcamera_get_histeq_agc_plateau(camera):
+    plateau = ctypes.c_float()
+    status = _cdll.seekcamera_get_histeq_agc_plateau(
+        camera.pointer, ctypes.byref(plateau)
+    )
+
+    return plateau, status
+
+
+def cseekcamera_set_histeq_agc_plateau(camera, plateau):
+    return _cdll.seekcamera_set_histeq_agc_plateau(
+        camera.pointer, ctypes.c_float(plateau)
+    )
+
+
+def cseekcamera_get_histeq_agc_plateau_redistribution_mode(camera):
+    mode = ctypes.c_int32()
+    status = _cdll.seekcamera_get_histeq_agc_plateau_redistribution_mode(
+        camera.pointer, ctypes.byref(mode)
+    )
+    return mode, status
+
+
+def cseekcamera_set_histeq_agc_plateau_redistribution_mode(camera, mode):
+    return _cdll.seekcamera_set_histeq_agc_plateau_redistribution_mode(
+        camera.pointer, ctypes.c_int32(mode)
+    )
+
+
+def cseekcamera_get_histeq_agc_gain_limit(camera):
+    limit = ctypes.c_float()
+    status = _cdll.seekcamera_get_histeq_agc_gain_limit(
+        camera.pointer, ctypes.byref(limit)
+    )
+    return limit, status
+
+
+def cseekcamera_set_histeq_agc_gain_limit(camera, limit):
+    return _cdll.seekcamera_set_histeq_agc_gain_limit(
+        camera.pointer, ctypes.c_float(limit)
+    )
+
+
+def cseekcamera_get_histeq_agc_gain_limit_factor_mode(camera):
+    mode = ctypes.c_int32()
+    status = _cdll.seekcamera_get_histeq_agc_gain_limit_factor_mode(
+        camera.pointer, ctypes.byref(mode)
+    )
+
+    return mode, status
+
+
+def cseekcamera_set_histeq_agc_gain_limit_factor_mode(camera, mode):
+    return _cdll.seekcamera_set_histeq_agc_gain_limit_factor_mode(
+        camera.pointer, ctypes.c_int32(mode)
+    )
+
+
+def cseekcamera_get_histeq_agc_gain_limit_factor_xmax(camera):
+    xmax = ctypes.c_uint32()
+    status = _cdll.seekcamera_get_histeq_agc_gain_limit_factor_xmax(
+        camera.pointer, ctypes.byref(xmax)
+    )
+
+    return xmax, status
+
+
+def cseekcamera_set_histeq_agc_gain_limit_factor_xmax(camera, xmax):
+    return _cdll.seekcamera_set_histeq_agc_gain_limit_factor_xmax(
+        camera.pointer, ctypes.c_uint32(xmax)
+    )
+
+
+def cseekcamera_get_histeq_agc_gain_limit_factor_ymin(camera):
+    ymin = ctypes.c_float()
+    status = _cdll.seekcamera_get_histeq_agc_gain_limit_factor_ymin(
+        camera.pointer, ctypes.byref(ymin)
+    )
+
+    return ymin, status
+
+
+def cseekcamera_set_histeq_agc_gain_limit_factor_ymin(camera, ymin):
+    return _cdll.seekcamera_set_histeq_agc_gain_limit_factor_ymin(
+        camera.pointer, ctypes.c_float(ymin)
+    )
+
+
+def cseekcamera_get_histeq_agc_alpha_time_seconds(camera):
+    alpha_time = ctypes.c_float()
+    status = _cdll.seekcamera_get_histeq_agc_alpha_time_seconds(
+        camera.pointer, ctypes.byref(alpha_time)
+    )
+
+    return alpha_time, status
+
+
+def cseekcamera_set_histeq_agc_alpha_time_seconds(camera, alpha_time):
+    return _cdll.seekcamera_set_histeq_agc_alpha_time_seconds(
+        camera.pointer, ctypes.c_float(alpha_time)
+    )
+
+
+def cseekcamera_get_histeq_agc_trim_left(camera):
+    trim = ctypes.c_float()
+    status = _cdll.seekcamera_get_histeq_agc_trim_left(
+        camera.pointer, ctypes.byref(trim)
+    )
+
+    return trim, status
+
+
+def cseekcamera_set_histeq_agc_trim_left(camera, trim):
+    return _cdll.seekcamera_set_histeq_agc_trim_left(
+        camera.pointer, ctypes.c_float(trim)
+    )
+
+
+def cseekcamera_get_histeq_agc_trim_right(camera):
+    trim = ctypes.c_float()
+    status = _cdll.seekcamera_get_histeq_agc_trim_right(
+        camera.pointer, ctypes.byref(trim)
+    )
+
+    return trim, status
+
+
+def cseekcamera_set_histeq_agc_trim_right(camera, trim):
+    return _cdll.seekcamera_set_histeq_agc_trim_right(
+        camera.pointer, ctypes.c_float(trim)
+    )
+
+
+def cseekcamera_get_linear_agc_lock_mode(camera):
+    mode = ctypes.c_int32()
+    status = _cdll.seekcamera_get_linear_agc_lock_mode(
+        camera.pointer, ctypes.byref(mode)
+    )
+
+    return mode, status
+
+
+def cseekcamera_set_linear_agc_lock_mode(camera, mode):
+    return _cdll.seekcamera_set_linear_agc_lock_mode(
+        camera.pointer, ctypes.c_int32(mode)
+    )
+
+
+def cseekcamera_get_linear_agc_lock_min(camera):
+    lock_min = ctypes.c_uint32()
+    status = _cdll.seekcamera_get_linear_agc_lock_min(
+        camera.pointer, ctypes.byref(lock_min)
+    )
+
+    return lock_min, status
+
+
+def cseekcamera_set_linear_agc_lock_min(camera, lock_min):
+    return _cdll.seekcamera_set_linear_agc_lock_min(
+        camera.pointer, ctypes.c_uint32(lock_min)
+    )
+
+
+def cseekcamera_get_linear_agc_lock_max(camera):
+    lock_max = ctypes.c_uint32()
+    status = _cdll.seekcamera_get_linear_agc_lock_max(
+        camera.pointer, ctypes.byref(lock_max)
+    )
+
+    return lock_max, status
+
+
+def cseekcamera_set_linear_agc_lock_max(camera, lock_max):
+    return _cdll.seekcamera_set_linear_agc_lock_max(
+        camera.pointer, ctypes.c_uint32(lock_max)
+    )
+
+
 def cseekcamera_get_shutter_mode(camera):
     mode = ctypes.c_int32()
     status = _cdll.seekcamera_get_shutter_mode(camera.pointer, ctypes.byref(mode))
@@ -938,6 +1299,14 @@ def cseekcamera_frame_get_frame_by_format(camera_frame, fmt):
     )
 
     return CSeekFrame(frame), status
+
+
+def cseekcamera_frame_lock(camera_frame):
+    return _cdll.seekcamera_frame_lock(camera_frame.pointer)
+
+
+def cseekcamera_frame_unlock(camera_frame):
+    return _cdll.seekcamera_frame_unlock(camera_frame.pointer)
 
 
 def cseekcamera_version_get_major():
