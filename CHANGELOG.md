@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v1.2.0
+
+Third stable release of the Python language bindings for the Seek Thermal SDK 4.X.
+
+Highlights
+* New APIs to wrap AGC APIs added to the C SDK (HistEQ, Linear)
+* New APIs to wrap frame locking APIs added to the C SDK
+* Bug fix for `cseekcamera_store_app_resources` which did not match the C API signature
+* Bug fix for `cseekcamera_load_app_resources` which did not match the C API signature
+* Bug fix for `SeekFrame.is_empty` API which accessed invalid `.value` attribute for bool type
+
 ## v1.1.1
 
 Stable patch release for v1.1.X.
