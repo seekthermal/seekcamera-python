@@ -1,8 +1,23 @@
 # CHANGELOG
 
+# v1.3.0
+
+Fourth stable release of the Python language bindings for the Seek Thermal SDK 4.X.
+
+Released on 06/06/2023.
+
+Highlights
+* New APIs to wrap Pipeline APIs added to the C SDK (Seek Vision, Legacy, Lite)
+* Adjust API to wrap Linear AGC Min & Max APIs modified in the C SDK
+* New API to wrap the Sharpening Filter added to the C SDK
+* New API to wrap the HistEQ ROI APIs added to the C SDK
+* New example added which includes Video Recording
+
 ## v1.2.0
 
 Third stable release of the Python language bindings for the Seek Thermal SDK 4.X.
+
+Released on 07/06/2022
 
 Highlights
 * New APIs to wrap AGC APIs added to the C SDK (HistEQ, Linear)

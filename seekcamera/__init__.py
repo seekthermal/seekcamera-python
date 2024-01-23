@@ -21,6 +21,7 @@ from seekcamera.camera import (
     SeekCameraAppResourcesRegion,
     SeekCameraColorPalette,
     SeekCameraColorPaletteData,
+    SeekCameraPipelineMode,
     SeekCameraAGCMode,
     SeekCameraLinearAGCLockMode,
     SeekCameraShutterMode,
