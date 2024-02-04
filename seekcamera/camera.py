@@ -352,6 +352,19 @@ class SeekCameraLinearAGCLockMode(IntEnum):
         return "SeekCameraLinearAGCLockMode({})".format(self.value)
 
 
+class SeekCameraPipelineMode(IntEnum):
+    
+    LITE = 0
+    LEGACY = 1
+    SEEKVISION = 2
+ 
+
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return "SeekCameraPipelineMode({})".format(self.value)
+
 class SeekCameraShutterMode(IntEnum):
     """Types of shutter modes.
 
@@ -491,10 +504,13 @@ class SeekCameraFilter(IntEnum):
     FLAT_SCENE_CORRECTION: int
         Filter responsible for correcting non-uniformities on all data pipelines. It is
         stored explicitly by the user apriori.
+    SHARPEN_CORRECTION: int
+        Filter responsible for sharpening.
     """
 
     GRADIENT_CORRECTION = 0
     FLAT_SCENE_CORRECTION = 1
+    SHARPEN_CORRECTION = 2
 
     def __str__(self):
         return self.name
@@ -757,11 +773,21 @@ class SeekCamera(object):
         Gets/sets the histogram left trim percentage used for HistEQ AGC.
     histeq_agc_trim_right: float
         Gets/sets the histogram right trim percentage used for HistEQ AGC.
+    histeq_agc_roi_left: int
+        Gets/sets the left roi used for HistEQ AGC.
+    histeq_agc_roi_top: int
+        Gets/sets the top roi used for HistEQ AGC.
+    histeq_agc_roi_width: int
+        Gets/sets the width roi used for HistEQ AGC.
+    histeq_agc_roi_height: int
+        Gets/sets the height roi used for HistEQ AGC.
+    histeq_agc_roi_enable: int
+        Gets/sets the enable roi used for HistEQ AGC.
     linear_agc_lock_mode: SeekCameraLinearAGCLock Mode
         Gets/sets the lock mode used for Linear AGC.
-    linear_agc_lock_min: int
+    linear_agc_lock_min: float
         Gets/sets the minimum lock value used for Linear AGC.
-    linear_agc_lock_max: int
+    linear_agc_lock_max: float
         Gets/sets the maximum lock value used for Linear AGC.
     shutter_mode: SeekCameraShutterMode
         Gets/sets the shutter mode.
@@ -1366,6 +1392,38 @@ class SeekCamera(object):
             raise error_from_status(status)
 
     @property
+    def pipeline_mode(self):
+        """Gets/sets the active pipeline mode.
+
+        Settings are refreshed between frames. This method can only be performed after
+        a capture session has started.
+
+        Returns
+        -------
+        SeekCameraPipelineMode
+            Active pipeline mode used by the camera.
+
+        Raises
+        ------
+        SeekCameraError
+            If an error occurs.
+        """
+        mode, status = _clib.cseekcamera_get_pipeline_mode(self._camera)
+        if is_error(status):
+            raise error_from_status(status)
+
+        return SeekCameraPipelineMode(mode.value)
+
+    @pipeline_mode.setter
+    def pipeline_mode(self, mode):
+        if not isinstance(mode, SeekCameraPipelineMode):
+            raise SeekCameraInvalidParameterError
+
+        status = _clib.cseekcamera_set_pipeline_mode(self._camera, mode)
+        if is_error(status):
+            raise error_from_status(status)
+            
+    @property
     def agc_mode(self):
         """Gets/sets the active AGC mode.
 
@@ -1683,6 +1741,156 @@ class SeekCamera(object):
     @histeq_agc_trim_right.setter
     def histeq_agc_trim_right(self, trim_left):
         status = _clib.cseekcamera_set_histeq_agc_trim_right(self._camera, trim_left)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+    @property
+    def histeq_agc_roi_left(self):
+        """Gets/sets the left ROI used for HistEQ AGC.
+
+        Settings are refreshed between frames.
+
+        Returns
+        -------
+        int
+            Left ROI used for HistEQ AGC.
+
+        Raises
+        ------
+        SeekCameraError
+            If an error occurs.
+        """
+        left, status = _clib.cseekcamera_get_histeq_agc_roi_left(self._camera)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+        return left.value
+
+    @histeq_agc_roi_left.setter
+    def histeq_agc_roi_left(self, left):
+        status = _clib.cseekcamera_set_histeq_agc_roi_left(self._camera, left)
+
+        if is_error(status):
+            raise error_from_status(status)
+            
+    @property
+    def histeq_agc_roi_top(self):
+        """Gets/sets the top ROI used for HistEQ AGC.
+
+        Settings are refreshed between frames.
+
+        Returns
+        -------
+        int
+            Top ROI used for HistEQ AGC.
+
+        Raises
+        ------
+        SeekCameraError
+            If an error occurs.
+        """
+        top, status = _clib.cseekcamera_get_histeq_agc_roi_top(self._camera)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+        return top.value
+
+    @histeq_agc_roi_top.setter
+    def histeq_agc_roi_top(self, top):
+        status = _clib.cseekcamera_set_histeq_agc_roi_top(self._camera, top)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+    @property
+    def histeq_agc_roi_width(self):
+        """Gets/sets the width ROI used for HistEQ AGC.
+
+        Settings are refreshed between frames.
+
+        Returns
+        -------
+        int
+            Width ROI used for HistEQ AGC.
+
+        Raises
+        ------
+        SeekCameraError
+            If an error occurs.
+        """
+        width, status = _clib.cseekcamera_get_histeq_agc_roi_width(self._camera)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+        return width.value
+
+    @histeq_agc_roi_width.setter
+    def histeq_agc_roi_width(self, width):
+        status = _clib.cseekcamera_set_histeq_agc_roi_width(self._camera, width)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+    @property
+    def histeq_agc_roi_height(self):
+        """Gets/sets the height ROI used for HistEQ AGC.
+
+        Settings are refreshed between frames.
+
+        Returns
+        -------
+        int
+            Height ROI used for HistEQ AGC.
+
+        Raises
+        ------
+        SeekCameraError
+            If an error occurs.
+        """
+        height, status = _clib.cseekcamera_get_histeq_agc_roi_height(self._camera)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+        return height.value
+
+    @histeq_agc_roi_height.setter
+    def histeq_agc_roi_height(self, height):
+        status = _clib.cseekcamera_set_histeq_agc_roi_height(self._camera, height)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+    @property
+    def histeq_agc_roi_enable(self):
+        """Gets/sets the enable ROI used for HistEQ AGC.
+
+        Settings are refreshed between frames.
+
+        Returns
+        -------
+        int
+            Enable ROI used for HistEQ AGC.
+
+        Raises
+        ------
+        SeekCameraError
+            If an error occurs.
+        """
+        enable, status = _clib.cseekcamera_get_histeq_agc_roi_enable(self._camera)
+
+        if is_error(status):
+            raise error_from_status(status)
+
+        return enable.value
+
+    @histeq_agc_roi_enable.setter
+    def histeq_agc_roi_enable(self, enable):
+        status = _clib.cseekcamera_set_histeq_agc_roi_enable(self._camera, enable)
 
         if is_error(status):
             raise error_from_status(status)
@@ -2411,15 +2619,17 @@ class SeekCameraFrameHeader(object):
         Gets the coordinates and value of the spot thermography pixel.
     agc_mode: SeekCameraAGCMode
         AGC mode used to process the image.
+    pipeline_mode: SeekCameraPiplineMode
+        Pipeline mode used to process the image.
     histeq_agc_num_bins: int
         Number of bins in the HistEQ AGC histogram.
     histeq_agc_bin_width: int
         Number of counts per bin in the HistEQ AGC histogram.
     histeq_agc_gain_limit_factor: float
         Multiplier of the HistEQ gain limit.
-    linear_agc_min: int
+    linear_agc_min: float
         Minimum count value in the frame when using Linear AGC.
-    linear_agc_max: int
+    linear_agc_max: float
         Maximum count value in the frame when using Linear AGC.
     gradient_correction_filter_state : SeekCameraFilterState
         State of the gradient correction filter.
@@ -2772,7 +2982,7 @@ class SeekCameraFrameHeader(object):
 
         Returns
         -------
-        int
+        float
             Minimum count value in the frame when using Linear AGC.
         """
         return self._header.linear_agc_min
@@ -2783,7 +2993,7 @@ class SeekCameraFrameHeader(object):
 
         Returns
         -------
-        int
+        float
             Minimum count value in the frame when using Linear AGC.
         """
         return self._header.linear_agc_max
@@ -2809,6 +3019,17 @@ class SeekCameraFrameHeader(object):
             State of the flat scene correction filter.
         """
         return SeekCameraFilterState(self._header.flat_scene_correction_filter_state)
+        
+    @property
+    def sharpen_correction_filter_state(self):
+        """Gets the state of the sharpen correction filter.
+
+        Returns
+        -------
+        SeekCameraFilterState
+            State of the sharpen correction filter.
+        """
+        return SeekCameraFilterState(self._header.sharpen_correction_filter_state)
 
 
 class SeekFrame:
