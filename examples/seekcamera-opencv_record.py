@@ -127,33 +127,36 @@ def on_event(camera, event_type, event_status, renderer):
     elif event_type == SeekCameraManagerEvent.READY_TO_PAIR:
         return
 
-def bgra2rgb( bgra ):
+
+def bgra2rgb(bgra):
     row, col, ch = bgra.shape
 
-    assert ch == 4, 'ARGB image has 4 channels.'
+    assert ch == 4, "ARGB image has 4 channels."
 
-    rgb = numpy.zeros( (row, col, 3), dtype='uint8' )
+    rgb = numpy.zeros((row, col, 3), dtype="uint8")
     # convert to rgb expected to generate the jpeg image
-    rgb[:,:,0] = bgra[:,:,2]
-    rgb[:,:,1] = bgra[:,:,1]
-    rgb[:,:,2] = bgra[:,:,0]
+    rgb[:, :, 0] = bgra[:, :, 2]
+    rgb[:, :, 1] = bgra[:, :, 1]
+    rgb[:, :, 2] = bgra[:, :, 0]
 
     return rgb
+
 
 def main():
     window_name = "Seek Thermal - Python OpenCV Sample"
     cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
     fileName = "image"
-    counter  = 100000
-    capture  = False
-    record   = False
+    counter = 100000
+    capture = False
+    record = False
     ts_first = 0
-    ts_last  = 0
+    ts_last = 0
     frame_count = 0
-   
+
     from PIL import Image
     from pathlib import Path
-    for f in glob.glob(fileName + '*.jpg'):
+
+    for f in glob.glob(fileName + "*.jpg"):
         os.remove(f)
 
     print("\nuser controls:")
@@ -193,15 +196,15 @@ def main():
                     if capture or record:
                         rgbimg = bgra2rgb(img)
                         frame_count += 1
-                        im = Image.fromarray(rgbimg).convert('RGB')
-                        jpgName = Path('.', fileName + str(counter)).with_suffix('.jpg')
+                        im = Image.fromarray(rgbimg).convert("RGB")
+                        jpgName = Path(".", fileName + str(counter)).with_suffix(".jpg")
                         im.save(jpgName)
                         counter += 1
                         capture = False
-                        if record:                            
+                        if record:
                             ts_last = renderer.frame.header.timestamp_utc_ns
                             if ts_first == 0:
-                                ts_first = renderer.frame.header.timestamp_utc_ns                        
+                                ts_first = renderer.frame.header.timestamp_utc_ns
             # Process key events.
             key = cv2.waitKey(1)
             if key == ord("q"):
@@ -212,29 +215,36 @@ def main():
 
             if key == ord("r"):
                 if record == False:
-                    record = True  
+                    record = True
                     renderer.camera.shutter_mode = SeekCameraShutterMode.MANUAL
                     print("\nRecording! Press 'r' to stop recording")
-                    print("Note: shutter is disabled while recording...so keep the videos relatively short")
+                    print(
+                        "Note: shutter is disabled while recording...so keep the videos relatively short"
+                    )
                 else:
                     # Stop the recording and squish all the jpeg files together
                     # and generate the .avi file.
                     record = False
                     renderer.camera.shutter_mode = SeekCameraShutterMode.AUTO
-                    
-                    time_s = (ts_last - ts_first)/1000000000                    
-                    
+
+                    time_s = (ts_last - ts_first) / 1000000000
+
                     print("\nRecording stopped and video is in myVideo.avi")
                     img_array = []
-                    for filename in glob.glob('image*.jpg'):
+                    for filename in glob.glob("image*.jpg"):
                         img = cv2.imread(filename)
                         height, width, layers = img.shape
-                        size = (width,height)
-                        img_array.append(img)                        
-                    out = cv2.VideoWriter('myVideo.avi', cv2.VideoWriter_fourcc(*'DIVX'), frame_count/time_s, size)
-                    
+                        size = (width, height)
+                        img_array.append(img)
+                    out = cv2.VideoWriter(
+                        "myVideo.avi",
+                        cv2.VideoWriter_fourcc(*"DIVX"),
+                        frame_count / time_s,
+                        size,
+                    )
+
                     frame_count = ts_first = ts_last = 0
-                    
+
                     for i in range(len(img_array)):
                         out.write(img_array[i])
                     out.release()

@@ -320,7 +320,7 @@ def configure_dll():
         ctypes.c_int32,
         ctypes.POINTER(CSeekCameraColorPaletteDataEntry * 256),
     ]
-    
+
     # seekcamera_get_pipeline_mode
     _cdll.seekcamera_get_pipeline_mode.restype = ctypes.c_int32
     _cdll.seekcamera_get_pipeline_mode.argtypes = [
@@ -465,7 +465,7 @@ def configure_dll():
         ctypes.c_void_p,
         ctypes.c_float,
     ]
-    
+
     # seekcamera_get_histeq_agc_roi_left
     _cdll.seekcamera_get_histeq_agc_roi_left.restype = ctypes.c_int32
     _cdll.seekcamera_get_histeq_agc_roi_left.argtypes = [
@@ -521,7 +521,7 @@ def configure_dll():
         ctypes.c_void_p,
         ctypes.c_int32,
     ]
-    
+
     # seekcamera_get_histeq_agc_roi_enable
     _cdll.seekcamera_get_histeq_agc_roi_enable.restype = ctypes.c_int32
     _cdll.seekcamera_get_histeq_agc_roi_enable.argtypes = [
@@ -1239,10 +1239,12 @@ def cseekcamera_set_histeq_agc_trim_right(camera, trim):
         camera.pointer, ctypes.c_float(trim)
     )
 
+
 def cseekcamera_set_histeq_agc_roi_left(camera, left):
     return _cdll.seekcamera_set_histeq_agc_roi_left(
         camera.pointer, ctypes.c_int32(left)
     )
+
 
 def cseekcamera_get_histeq_agc_roi_left(camera):
     left = ctypes.c_int32()
@@ -1254,15 +1256,12 @@ def cseekcamera_get_histeq_agc_roi_left(camera):
 
 
 def cseekcamera_set_histeq_agc_roi_top(camera, top):
-    return _cdll.seekcamera_set_histeq_agc_roi_top(
-        camera.pointer, ctypes.c_int32(top)
-    )
+    return _cdll.seekcamera_set_histeq_agc_roi_top(camera.pointer, ctypes.c_int32(top))
+
 
 def cseekcamera_get_histeq_agc_roi_top(camera):
     top = ctypes.c_int32()
-    status = _cdll.seekcamera_get_histeq_agc_roi_top(
-        camera.pointer, ctypes.byref(top)
-    )
+    status = _cdll.seekcamera_get_histeq_agc_roi_top(camera.pointer, ctypes.byref(top))
 
     return top, status
 
@@ -1271,6 +1270,7 @@ def cseekcamera_set_histeq_agc_roi_width(camera, width):
     return _cdll.seekcamera_set_histeq_agc_roi_width(
         camera.pointer, ctypes.c_int32(width)
     )
+
 
 def cseekcamera_get_histeq_agc_roi_width(camera):
     width = ctypes.c_int32()
@@ -1286,6 +1286,7 @@ def cseekcamera_set_histeq_agc_roi_height(camera, height):
         camera.pointer, ctypes.c_int32(height)
     )
 
+
 def cseekcamera_get_histeq_agc_roi_height(camera):
     height = ctypes.c_int32()
     status = _cdll.seekcamera_get_histeq_agc_roi_height(
@@ -1293,12 +1294,13 @@ def cseekcamera_get_histeq_agc_roi_height(camera):
     )
 
     return height, status
-    
-    
+
+
 def cseekcamera_set_histeq_agc_roi_enable(camera, enable):
     return _cdll.seekcamera_set_histeq_agc_roi_enable(
         camera.pointer, ctypes.c_bool(enable)
     )
+
 
 def cseekcamera_get_histeq_agc_roi_enable(camera):
     enable = ctypes.c_bool()

@@ -353,17 +353,17 @@ class SeekCameraLinearAGCLockMode(IntEnum):
 
 
 class SeekCameraPipelineMode(IntEnum):
-    
+
     LITE = 0
     LEGACY = 1
     SEEKVISION = 2
- 
 
     def __str__(self):
         return self.name
 
     def __repr__(self):
         return "SeekCameraPipelineMode({})".format(self.value)
+
 
 class SeekCameraShutterMode(IntEnum):
     """Types of shutter modes.
@@ -1422,7 +1422,7 @@ class SeekCamera(object):
         status = _clib.cseekcamera_set_pipeline_mode(self._camera, mode)
         if is_error(status):
             raise error_from_status(status)
-            
+
     @property
     def agc_mode(self):
         """Gets/sets the active AGC mode.
@@ -1774,7 +1774,7 @@ class SeekCamera(object):
 
         if is_error(status):
             raise error_from_status(status)
-            
+
     @property
     def histeq_agc_roi_top(self):
         """Gets/sets the top ROI used for HistEQ AGC.
@@ -3019,7 +3019,7 @@ class SeekCameraFrameHeader(object):
             State of the flat scene correction filter.
         """
         return SeekCameraFilterState(self._header.flat_scene_correction_filter_state)
-        
+
     @property
     def sharpen_correction_filter_state(self):
         """Gets the state of the sharpen correction filter.
