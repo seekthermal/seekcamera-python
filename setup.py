@@ -23,7 +23,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="seekcamera-python",
-    version="1.2.0",
+    version="1.3.0",
     author="Seek Thermal Incorporated",
     author_email="open-source@thermal.com",
     description="Seek Thermal SDK Python Language Bindings",
